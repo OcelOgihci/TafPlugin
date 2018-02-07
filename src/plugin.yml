@@ -1,0 +1,31 @@
+name: Taf
+version: 1.4
+author: OcelOgihci/Williamwisxs
+main: fr.ocelogihci.taf.TafPlugin
+commands:
+  taf:
+    description: Le quoi?
+    usage: /taf <player>
+    permission: op.taf
+  calmezvous:
+    description: Calmez-vous!
+    usage: /calmezvous <player>
+    permission: op.calmezvous
+    aliases:
+    - cv
+  gateofdeath:
+    description: OUVERTURE HUITIEME PORTE!
+    usage: /gateofdeath [<off>]
+    permission: op.gateofdeath
+    aliases:
+    - godguy
+  godlist:
+    description: List PlayerGod
+    usage: /godlist
+    permission: op.godlist
+  setgodlimit:
+    description: Set number max of GodGuy
+    usage : /setgodlimit <true:false>
+    permission: op.setgodlimit
+  
+    

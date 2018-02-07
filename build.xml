@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<!-- Ant Build pour générer le .jar --> 
+<project name="TafPlugin" default="CreateJar">
+  <target name="CreateJar" description="Create Jar file">
+        <jar jarfile="dist/plugins/TafPlugin.jar" basedir="bin/" includes="**/*.class" />
+  </target>
+</project>
