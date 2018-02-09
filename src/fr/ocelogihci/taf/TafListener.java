@@ -31,9 +31,9 @@ public class TafListener implements Listener {
 	public void onPlayerInteract(PlayerInteractEvent e) {
 		if(!(e.getPlayer() instanceof Player)) return;
 		
-		Player p = (Player) e.getPlayer();
+		Player p = e.getPlayer();
 
-		if (m_tfMain.getGodPlayers().contains(p.getName()) && e.getPlayer().getName() == p.getName()) {
+		if (m_tfMain.getGodPlayers().contains(p.getName())) {
 
 			if (e.getAction().equals(Action.LEFT_CLICK_BLOCK) || e.getAction().equals(Action.LEFT_CLICK_AIR) ) {
 				Vector deuxBlksDnt = p.getEyeLocation().getDirection().normalize().multiply(5);
@@ -48,8 +48,8 @@ public class TafListener implements Listener {
 	public void onPlayerMove(PlayerMoveEvent e) {
 		if(!(e.getPlayer() instanceof Player)) return;
 		
-		Player p = (Player) e.getPlayer();
-		if (m_tfMain.getGodPlayers().contains(p.getName()) && p.getName() == e.getPlayer().getName()) {
+		Player p = e.getPlayer();
+		if (m_tfMain.getGodPlayers().contains(p.getName())) {
 			Location loc = m_tfMain.getBlockBehindPlayer(p);
 			loc.getBlock().getRelative(BlockFace.UP).setType(Material.FIRE);
 
@@ -115,7 +115,7 @@ public class TafListener implements Listener {
 
 	@EventHandler
 	public void onPlayerToggleFlight(PlayerToggleFlightEvent e) {
-		Player p = (Player) e.getPlayer();
+		Player p = e.getPlayer();
 
 		if (p.getGameMode() != GameMode.CREATIVE) {
 			if(m_tfMain.getGodPlayers().contains(p.getName())) {
