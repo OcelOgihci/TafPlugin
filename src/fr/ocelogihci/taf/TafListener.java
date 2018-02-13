@@ -1,5 +1,7 @@
 package fr.ocelogihci.taf;
 
+import java.util.HashSet;
+
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -22,6 +24,9 @@ import org.bukkit.util.Vector;
 
 public class TafListener implements Listener {
 	private TafPlugin m_tfMain;
+	
+
+	private HashSet<String> m_hsPlayerExpl = new HashSet<String>();
 
 	public TafListener(TafPlugin plugin) {
 		this.m_tfMain = plugin;
@@ -32,6 +37,7 @@ public class TafListener implements Listener {
 		if(!(e.getPlayer() instanceof Player)) return;
 		
 		Player p = e.getPlayer();
+		m_hsPlayerExpl.add(p.getName());
 
 		if (m_tfMain.getGodPlayers().contains(p.getName())) {
 
@@ -62,6 +68,7 @@ public class TafListener implements Listener {
 	public void onPlayerDeath(PlayerDeathEvent e) {
 		Player dead = (Player) e.getEntity();
 
+		m_hsPlayerExpl.remove(dead.getName());
 		if(e.getEntity().getKiller() instanceof Player) {
 
 			Player killer = dead.getKiller();
@@ -78,10 +85,11 @@ public class TafListener implements Listener {
 
 
 
-		}else
-			if(m_tfMain.getGodPlayers().contains(dead.getName()) && !(e.getEntity().getKiller() instanceof Player)) {
+		}
+		
+		if(m_tfMain.getGodPlayers().contains(dead.getName())) {
 				m_tfMain.getGodPlayers().remove(dead.getName());
-			}
+		}
 
 
 	}
@@ -95,14 +103,14 @@ public class TafListener implements Listener {
 			if(e.getCause().equals(DamageCause.ENTITY_EXPLOSION) || e.getCause().equals(DamageCause.BLOCK_EXPLOSION)) {
 				//				e.getEntity().sendMessage(ChatColor.BLUE + p.getName() + ChatColor.WHITE + " a été affecté par l'explosion"); 
 				if(e.getEntity() instanceof Player) {
-					if(m_tfMain.getGodPlayers().contains(p.getName())) {
+					if(m_hsPlayerExpl.contains(p.getName())) {
 						//						e.getEntity().sendMessage(ChatColor.RED + "Explosion cancelled");
 						e.setCancelled(true);
+						m_hsPlayerExpl.remove(p.getName());
 
 					}else {
 						//						e.getEntity().sendMessage(ChatColor.GREEN + "Explosion uncancelled");
-						Player target = p;
-						target.damage(5);
+						e.setCancelled(false);
 					}
 				}
 			}

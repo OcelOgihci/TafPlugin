@@ -32,8 +32,11 @@ public final class TafPlugin extends JavaPlugin {
 		getCommand("gateofdeath").setExecutor(new CommandGod(this));
 		getCommand("godlist").setExecutor(new CommandGod(this));
 		getCommand("setgodlimit").setExecutor(new CommandGod(this));
+		getCommand("heal").setExecutor(new CommandGod(this));
+
 		getServer().getPluginManager().registerEvents(new TafListener(this), this);
 
+		System.out.println("[Taf] Heal command enabled");
 		//		config.addDefault("godLimit", true);
 		
 

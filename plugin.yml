@@ -1,3 +1,4 @@
+main: TafPlugin
 name: Taf
 version: 1.4
 author: OcelOgihci/Williamwisxs
@@ -25,7 +26,12 @@ commands:
     permission: op.godlist
   setgodlimit:
     description: Set number max of GodGuy
-    usage : /setgodlimit <true:false>
+    usage: /setgodlimit <true:false>
     permission: op.setgodlimit
+  heal:
+    description: Heal player
+    usage: /heal
+    permission: op.heal
+    
   
     

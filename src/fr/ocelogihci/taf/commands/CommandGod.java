@@ -104,6 +104,12 @@ public class CommandGod implements CommandExecutor {
 				return true;
 			}
 			
+			if(cmd.getName().equalsIgnoreCase("heal")) {
+				l_Player.sendMessage(ChatColor.GREEN + "Vous avez été soigné(e)");
+				l_Player.setHealth(20);
+				return true;
+			}
+			
 			
 			// /setgodlimit
 			if(args.length != 0) {
